@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarFleetManagement_MobileApp.Views.AddVehicleInpection"
+             xmlns:Pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:InputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:Button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:local="clr-namespace:CarFleetManagement_MobileApp.ViewModels"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#ECF0F3"
+             x:Name="AddInpection">
+
+    <ContentPage.Content>
+        <StackLayout x:DataType="local:AddVehicleInpectionViewModel" Spacing="-25">
+            <!--Title View-->
+            <StackLayout x:Name="titleLayout" BackgroundColor="White" HeightRequest="55" Spacing="20" VerticalOptions="Start" Orientation="Horizontal">
+                <ImageButton x:Name="backButton" Source="back.png"
+                             HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent"
+                             HeightRequest="18" WidthRequest="18" Margin="15,0,0,0"
+                             Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference AddInpection}}"
+                             CommandParameter="{x:Reference backButton}" />
+                <Label Text="Technical Inspection" TextColor="{StaticResource Gray-700}" VerticalOptions="Center" FontSize="16" Style="{StaticResource AllLabel}" />
+            </StackLayout>
+            <!--Title View-->
+            
+            <Grid VerticalOptions="FillAndExpand" RowDefinitions="50*,50*" RowSpacing="10">
+                <!--Car Detail-->
+                <Pancake:PancakeView Grid.Row="0" Padding="0" TranslationY="20" CornerRadius="0,0,20,20" BackgroundColor="{StaticResource Gray-900}">
+                    <StackLayout>
+                        <Grid RowDefinitions="Auto,1,Auto,1,Auto" ColumnDefinitions="30*, 70*" Padding="15,15,15,8" RowSpacing="10">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Model" Style="{StaticResource DetailHeading}" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Model}" Style="{StaticResource DetailSubheading}" />
+
+                            <BoxView Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource Gray-800}" />
+
+                            <Label Grid.Row="2" Grid.Column="0" Text="Make" Style="{StaticResource DetailHeading}" />
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Brand}" Style="{StaticResource DetailSubheading}" />
+
+                            <BoxView Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="{StaticResource Gray-800}" />
+
+                            <Label Grid.Row="4" Grid.Column="0" Text="Registration No" Style="{StaticResource DetailHeading}" />
+                            <Label Grid.Row="4" Grid.Column="1" Text="{Binding RegistrationNo}" Style="{StaticResource DetailSubheading}" />
+                        </Grid>
+                        <Image Source="{Binding URL}" Aspect="AspectFill"
+                               VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </Pancake:PancakeView>
+                <!--Car Detail-->
+                
+                <!--Add Inpection Dates-->
+                <StackLayout Grid.Row="1" Margin="20,30,20,20" Spacing="20">
+                    <!--Date of Inspection-->
+                    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="10*,90*" RowSpacing="2">
+                        <Label Grid.Row="0" Grid.Column="1" Text="Date of Last Technical Inspection" 
+                               TextColor="{StaticResource Gray-500}" Style="{StaticResource AllLabel}" />
+                        <Image Grid.Row="1" Grid.Column="0" 
+                               Source="calendar.png" Aspect="AspectFit"
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               HeightRequest="22" WidthRequest="22"/>
+                        <InputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" 
+                                                       UnfocusedColor="{StaticResource Gray-400}"
+                                                       Style="{StaticResource TextInputLayoutStyle}">
+                            <DatePicker Date="{Binding DateOfInspection}" Format="dd.MM.yyyy" 
+                                        HeightRequest="50" TranslationY="1"
+                                        FontSize="15" FontAttributes="Bold" 
+                                        TextColor="{StaticResource Gray-800}" />
+                        </InputLayout:SfTextInputLayout>
+                    </Grid>
+                    <!--Date of Inspection-->
+                    
+                    <!--Date of Next Inspection-->
+                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="10*,90*" RowSpacing="2">
+                        <Label Grid.Row="0" Grid.Column="1" Text="Date of Next Technical Inspection" 
+                               TextColor="{StaticResource Gray-500}" Style="{StaticResource AllLabel}" />
+                        <Image Grid.Row="1" Grid.Column="0" 
+                               Source="clock.png" Aspect="AspectFit"
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               HeightRequest="22" WidthRequest="22"/>
+                        <InputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" 
+                                                       UnfocusedColor="{StaticResource Gray-400}"
+                                                       Style="{StaticResource TextInputLayoutStyle}">
+                            <DatePicker Date="{Binding DateOfNextInspection}" Format="dd.MM.yyyy" 
+                                        HeightRequest="50" TranslationY="1"
+                                        FontSize="15" FontAttributes="Bold"
+                                        
+                                        TextColor="{StaticResource Gray-800}" />
+                        </InputLayout:SfTextInputLayout>
+                        <!--Date of Next Inspection-->
+                        
+                        <StackLayout Grid.Row="2" Grid.Column="1" Margin="0,20,0,0" Orientation="Horizontal" Spacing="5">
+                            <CheckBox x:Name="IsOperational" IsChecked="{Binding IsOperational}" HeightRequest="10" Color="{StaticResource Gray-500}">
+                                <CheckBox.Triggers>
+                                    <DataTrigger TargetType="CheckBox" Binding="{Binding Source={x:Reference IsOperational}, Path=IsChecked}" Value="False">
+                                        <Setter Property="Color" Value="{StaticResource Gray-500}" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="CheckBox" Binding="{Binding Source={x:Reference IsOperational}, Path=IsChecked}" Value="True">
+                                        <Setter Property="Color" Value="#3871FF" />
+                                    </DataTrigger>
+                                </CheckBox.Triggers>
+                            </CheckBox>
+                            <Label Text="Is Operational?" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Gray-900}" Style="{StaticResource AllLabel}" />
+                        </StackLayout>
+                    </Grid>
+                    <Button:SfButton Text="Submit" BackgroundColor="#3871FF" HeightRequest="60"
+                                     HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
+                                     Style="{StaticResource Button}" Command="{Binding SubmitCommand}">
+                        <Button:SfButton.Triggers>
+                            <DataTrigger TargetType="Button:SfButton" Binding="{Binding Source={x:Reference IsOperational}, Path=IsChecked}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+
+                            <DataTrigger TargetType="Button:SfButton" Binding="{Binding Source={x:Reference IsOperational}, Path=IsChecked}" Value="False">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Opacity" Value="0.5" />
+                            </DataTrigger>
+                        </Button:SfButton.Triggers>
+                    </Button:SfButton>
+                </StackLayout>
+                <!--Add Inpection Dates-->
+            </Grid>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

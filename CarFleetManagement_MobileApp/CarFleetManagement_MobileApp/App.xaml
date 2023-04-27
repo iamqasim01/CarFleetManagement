@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:InputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:Buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="CarFleetManagement_MobileApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--  Common style for Title labels  -->
+            <Style x:Key="TitleLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="Cambria" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="LineHeight" Value="{OnPlatform Android=1.5, Default=-1}" />
+            </Style>
+
+            <!--  Common style for Heading labels  -->
+            <Style x:Key="HeadingLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="FontFamily" Value="Cambria" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <!--  Common style for All labels  -->
+            <Style x:Key="AllLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="Cambria" />
+            </Style>
+            <!--  Details Heading Label Style  -->
+            <Style x:Key="DetailHeading" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-400}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="Cambria" />
+            </Style>
+            <!--  Details Subheading Label Style  -->
+            <Style x:Key="DetailSubheading" TargetType="Label">
+                <Setter Property="FontSize" Value="12.5" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="Cambria" />
+            </Style>
+            <!--  Common style for Show/Submit Button (Syncfusion)  -->
+            <Style x:Key="Button" TargetType="Buttons:SfButton">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="SeaGreen" />
+                <Setter Property="FontFamily" Value="Cambria" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
+            <!--  Common style for Entry  -->
+            <Style x:Key="CommonEntry" TargetType="Entry">
+                <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+                <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-500}" />
+                <Setter Property="FontFamily" Value="Cambria" />
+                <Setter Property="FontSize" Value="14.5" />
+                <Setter Property="FontAttributes" Value="None" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="{OnPlatform Android=40}" />
+                <Setter Property="Margin" Value="0,4,0,0" />
+            </Style>
+            <!--  Common style for TextInput Layouts  -->
+            <Style x:Key="TextInputLayoutStyle" TargetType="InputLayout:SfTextInputLayout">
+                <Setter Property="UnfocusedColor" Value="White" />
+                <Setter Property="ContainerType" Value="Outlined" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="OutlineCornerRadius" Value="4" />
+                <Setter Property="FocusedColor" Value="#2196F3" />
+                <Setter Property="ContainerBackgroundColor" Value="White" />
+                <Setter Property="ReserveSpaceForAssistiveLabels" Value="False" />
+                <Setter Property="InputViewPadding" Value="12,0,0,0" />
+                <Setter Property="Margin" Value="0,-8,0,0" />
+                <Setter Property="FocusedStrokeWidth" Value="1" />
+            </Style>
+
+            <!--Colors-->
+            <Color x:Key="Gray-100">#f6f7f8</Color>
+            <Color x:Key="Gray-200">#ebecef</Color>
+            <Color x:Key="Gray-300">#ced2d9</Color>
+            <Color x:Key="Gray-400">#b2b8c2</Color>
+            <Color x:Key="Gray-500">#959eac</Color>
+            <Color x:Key="Gray-600">#788396</Color>
+            <Color x:Key="Gray-700">#606a7b</Color>
+            <Color x:Key="Gray-800">#4a515e</Color>
+            <Color x:Key="Gray-900">#333942</Color>
+            <Color x:Key="Gray-Black">#000000</Color>
+            <Color x:Key="Gray-White">#ffffff</Color>
+            <Color x:Key="Gray-Bg">#ffffff</Color>
+            <Color x:Key="GrayShadowColor">#ffffff</Color>
+            <Color x:Key="GrayShadowBackgroundColor">#f6f7f8</Color>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

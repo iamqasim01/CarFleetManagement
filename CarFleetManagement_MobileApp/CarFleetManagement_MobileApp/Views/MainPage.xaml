@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarFleetManagement_MobileApp.MainPage"
+             xmlns:InputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:local="clr-namespace:CarFleetManagement_MobileApp.ViewModels"
+             xmlns:model="clr-namespace:CarFleetManagement_MobileApp.Models"
+             BackgroundColor="#ECF0F3">
+
+    <Grid RowDefinitions="Auto">
+        <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Margin="15,10" Spacing="10">
+            <Grid ColumnDefinitions="70*,30*">
+                <InputLayout:SfTextInputLayout Grid.Column="0" Style="{StaticResource TextInputLayoutStyle}">
+                    <Entry Text="{Binding SearchText}" Placeholder="Search Vehicle" HeightRequest="50" Style="{StaticResource CommonEntry}" />
+                    <InputLayout:SfTextInputLayout.TrailingView>
+                        <Image Source="scanner.png" HeightRequest="18" Aspect="AspectFit" />
+                    </InputLayout:SfTextInputLayout.TrailingView>
+                </InputLayout:SfTextInputLayout>
+                <Frame Grid.Column="1"  HasShadow="False" 
+                           HeightRequest="50" Padding="5" 
+                           BackgroundColor="Transparent"
+                           BorderColor="{StaticResource Gray-300}">
+                    <Grid ColumnDefinitions="49*,1,49*">
+                        <ImageButton Grid.Column="0"
+                                         Source="settings.png"
+                                         Aspect="AspectFit"
+                                         HorizontalOptions="Center"
+                                         HeightRequest="18" WidthRequest="18"
+                                         BackgroundColor="Transparent" />
+                        <BoxView Grid.Column="1" BackgroundColor="{StaticResource Gray-300}" />
+                        <ImageButton Grid.Column="2"
+                                         Source="unfold.png"
+                                         Aspect="AspectFit"
+                                         HorizontalOptions="Center"
+                                         HeightRequest="18" WidthRequest="18"
+                                         BackgroundColor="Transparent" />
+                    </Grid>
+                </Frame>
+            </Grid>
+            <StackLayout Orientation="Horizontal">
+                <Label HorizontalOptions="StartAndExpand" Style="{StaticResource HeadingLabelStyle}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Vehicles:" TextColor="{StaticResource Gray-700}" FontSize="14" FontAttributes="Bold" />
+                            <Span Text=" " />
+                            <Span Text="{Binding Count}" TextColor="{StaticResource Gray-900}" FontSize="14" FontAttributes="Bold" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Image Source="menu.png" HeightRequest="18" WidthRequest="18" HorizontalOptions="End" />
+            </StackLayout>
+            <RefreshView x:DataType="local:VehicleViewModel" Command="{Binding LoadVehicles}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" >
+                <CollectionView x:Name="CollectionView" SelectionMode="None" 
+                                    ItemsSource="{Binding Vehicles}"
+                                    VerticalScrollBarVisibility="Never"
+                                    IsVisible="True">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="4" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout x:DataType="model:Vehicle">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:VehicleViewModel}}, Path=VehicleTapCommand}" CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+                                <Frame CornerRadius="5" HasShadow="False" Padding="15,15,10,30">
+                                    <StackLayout>
+                                        <StackLayout>
+                                            <Label Text="{Binding Model}" MaxLines="2" LineBreakMode="TailTruncation" Style="{StaticResource HeadingLabelStyle}" />
+                                        </StackLayout>
+                                        <Grid ColumnDefinitions="25*,35*,40*" ColumnSpacing="15">
+                                            <Frame HeightRequest="60" Padding="0.01" CornerRadius="8">
+                                                <Image Source="{Binding Photo}" Aspect="AspectFill" />
+                                            </Frame>
+                                            <StackLayout Grid.Column="1">
+                                                <Label Text="Make" TextColor="{StaticResource Gray-500}" HorizontalOptions="Fill" HorizontalTextAlignment="End" Style="{StaticResource AllLabel}" />
+                                                <Label Text="Registration No." TextColor="{StaticResource Gray-500}" HorizontalOptions="Fill" HorizontalTextAlignment="End" Style="{StaticResource AllLabel}" />
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="2">
+                                                <Label Text="{Binding Brand}" TextColor="{StaticResource Gray-900}" FontAttributes="Bold" Style="{StaticResource AllLabel}" />
+                                                <Label Text="{Binding RegistrationNo}" TextColor="{StaticResource Gray-900}" FontAttributes="Bold" Style="{StaticResource AllLabel}" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+        <Frame Grid.Row="0" HeightRequest="60" WidthRequest="60" 
+               Margin="10,0,20,50" Padding="0" CornerRadius="60" 
+               HorizontalOptions="End" VerticalOptions="End">
+            <Label Text="+" FontSize="25" TextColor="#2196F3" BackgroundColor="Transparent"
+                   HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Frame>
+    </Grid>
+
+</ContentPage>
